@@ -42,12 +42,9 @@
 </body>
 
 <script>
-    let loadNotes = "";
-    try {
-        let loadNotes = localStorage.getItem("notes");
-    }
-    catch (err) {
-        let loadNotes = "Enter your notes here and click 'Save'";
+    let loadNotes = localStorage.getItem("notes");
+    if (loadNotes === null || loadNotes === "") {
+        loadNotes = "Enter your notes here and click 'Save'";
     }
     $("#note-area").val(loadNotes);
     let sp = "/";
