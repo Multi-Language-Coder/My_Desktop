@@ -21,16 +21,16 @@
             <div class="widget">
                 <h3>Notepad</h3>
                 <div class="notepad">
-                    <textarea id="note-area"
-                        name="message"
-                        rows="20"
-                        cols="40"></textarea>
+                    <textarea id="note-area" name="message" rows="20" cols="40"></textarea>
                     <p><button id="saveNoteBtn">Save Note</button></p>
                 </div>
             </div>
             <div class="widget">
                 <h3>Deltarune Video</h3>
-                <iframe width="95%" height="300vh" src="https://www.youtube.com/embed/xaQZdvI8Hp4?si=WfHSQjbjJEsrw70u" title="YouTube video player" frameborder="2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <iframe width="95%" height="300vh" src="https://www.youtube.com/embed/xaQZdvI8Hp4?si=WfHSQjbjJEsrw70u"
+                    title="YouTube video player" frameborder="2"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
             <div class="widget">
 
@@ -42,18 +42,29 @@
 </body>
 
 <script>
+    try {
+        let loadNotes = localStorage.getItem("notes");
+    }
+    catch (err) {
+        let loadNotes = "Enter your notes here and click 'Save'";
+    }
+    $("#note-area").val(loadNotes);
     let sp = "/";
     let today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth() + 1;
-    var yyyy = today.getFullYear();
+    let dd = today.getDate();
+    let mm = today.getMonth() + 1;
+    let yyyy = today.getFullYear();
     if (dd < 10) {
         dd = '0' + dd;
     }
     if (mm < 10) {
         mm = '0' + mm;
     }
-    $("#date").html(mm+sp+dd+sp+yyyy);
+    $("#date").html(mm + sp + dd + sp + yyyy);
+    $("#saveNoteBtn").click(function () {
+        let currentNotes = $("#note-area").val();
+        localStorage.setItem("notes", currentNotes);
+    });
 </script>
 
 </html>
